@@ -3,7 +3,7 @@ function grafica_Plano(matriz)
 AA=matriz(1,:);
 BB=matriz(2,:);
 CC=matriz(3,:);
-[x, y]=meshgrid(-10:0.1:10);
+[x, y]=meshgrid(-10:1:10);
 
 A=AA(1);
 B=AA(2);

@@ -1,4 +1,4 @@
-function X = gauss_pivote(A,b)
+function [X, Ab] = gauss_pivote(A,b)
 
 disp('Metodo de Eliminacion Gaussiana con Pivoteo Parcial');
 %A=input('Ingrese la matriz A en []: ');
