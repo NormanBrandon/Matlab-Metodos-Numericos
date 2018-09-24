@@ -22,7 +22,7 @@ function varargout = Gauss_pivote_gui(varargin)
 
 % Edit the above text to modify the response to help Gauss_pivote_gui
 
-% Last Modified by GUIDE v2.5 23-Sep-2018 02:02:43
+% Last Modified by GUIDE v2.5 23-Sep-2018 14:53:41
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -80,10 +80,12 @@ function pushbutton_Calcular_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 A=load('matrizA.txt');
 B=load('vectorB.txt');
+pwd='/home/armando/Documentos/metodos_Matlab/Gauss_pivote';
 matTot=[A,B];
 [X,Ts]=gauss_pivote(A,B);
-fid=fopen('/home/armando/Documentos/metodos_Matlab/vectorX.txt', 'w');
-    
+%fid=fopen('/home/armando/Documentos/metodos_Matlab/vectorX.txt', 'w');
+fid=fopen(strcat(pwd,'/vectorX.txt'), 'w');
+   
 [f,c]=size(X);
 for i=1:f
     for j=1:c
@@ -93,7 +95,7 @@ for i=1:f
 end
 fclose(fid);
 
-fid=fopen('/home/armando/Documentos/metodos_Matlab/matrizU.txt', 'w');
+fid=fopen(strcat(pwd,'/matrizU.txt'), 'w');
 [f,c]=size(Ts);
 for i=1:f
     for j=1:c
@@ -103,7 +105,7 @@ for i=1:f
 end
 fclose(fid);
 
-fid=fopen('/home/armando/Documentos/metodos_Matlab/sistema.txt', 'w');
+fid=fopen(strcat(pwd,'/sistema.txt'), 'w');
 sis=[A,X,B];
 [f,c]=size(sis);
 for i=1:f
@@ -121,7 +123,6 @@ set(handles.edit_matrizU, 'string', num2str(load('matrizU.txt')));
 set(handles.edit_sistema, 'string', num2str(sis));
 grafica_Plano(matTot);
 
-
 % --- Executes on button press in pushbutton_Regresar.
 function pushbutton_Regresar_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton_Regresar (see GCBO)
@@ -134,6 +135,11 @@ function pushbutton_Paso_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton_Paso (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+A=load('matrizA.txt');
+B=load('vectorB.txt');
+pwd='/home/armando/Documentos/metodos_Matlab/Gauss_pivote';
+gauss_pivote_paso(A,B, pwd);
+set(handles.edit_proceso, 'string', num2str(load('paso.txt')));
 
 
 
@@ -241,6 +247,29 @@ function edit_sistema_Callback(hObject, eventdata, handles)
 % --- Executes during object creation, after setting all properties.
 function edit_sistema_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to edit_sistema (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function edit_proceso_Callback(hObject, eventdata, handles)
+% hObject    handle to edit_proceso (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of edit_proceso as text
+%        str2double(get(hObject,'String')) returns contents of edit_proceso as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function edit_proceso_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to edit_proceso (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
