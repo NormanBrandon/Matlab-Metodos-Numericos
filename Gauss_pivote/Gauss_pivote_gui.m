@@ -23,7 +23,7 @@ function varargout = Gauss_pivote_gui(varargin)
 
 % Edit the above text to modify the response to help Gauss_pivote_gui
 
-% Last Modified by GUIDE v2.5 24-Sep-2018 19:07:36
+% Last Modified by GUIDE v2.5 25-Sep-2018 10:56:49
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
