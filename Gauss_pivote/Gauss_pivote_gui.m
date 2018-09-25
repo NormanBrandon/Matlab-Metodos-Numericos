@@ -238,9 +238,7 @@ function edit_matrizU_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 % Hints: get(hObject,'String') returns contents of edit_matrizU as text
-%        str2double(get(hObject,'String')) returns contents of edit_matrizU as a double
-
-
+%        str2double(get(hObject,'String')) returns contents of edit_matrizU as a doubl
 % --- Executes during object creation, after setting all properties.
 function edit_matrizU_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to edit_matrizU (see GCBO)
