@@ -148,7 +148,7 @@ B=load('vectorB.txt');
 %pwd='Gauss_pivote';
 gauss_pivote_paso(A,B, pwd);
 C = load('paso.txt');
-tamano = size(A)
+tamano = size(A);
 %divisor = tamano(1) /(tamano(2) - 1);
 Mat = zeros(tamano(1),tamano(1)+1);
 contador = load('contador.txt')
@@ -156,7 +156,7 @@ for n= 1:(tamano(1))
 Mat(n,:) = C(n+tamano(1)*contador,:);
 end
 set(handles.edit_proceso, 'string', num2str(Mat));
-if contador < (tamano(2))
+if contador < ()
 fileID = fopen('contador.txt','w');
 fprintf(fileID,'%d\n',contador + 1);
 fclose(fileID);
@@ -318,7 +318,7 @@ for n= 1:(tamano(1))
 Mat(n,:) = C(n+tamano(1)*contador(1),:);
 end
 set(handles.edit_proceso, 'string', num2str(Mat));
-if contador >= 1
+if contador > 0
 fileID = fopen('contador.txt','w');
 fprintf(fileID,'%d\n',contador - 1);
 fclose(fileID);
