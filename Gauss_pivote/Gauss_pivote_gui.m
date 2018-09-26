@@ -142,14 +142,12 @@ function pushbutton_Paso_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-
 A=load('matrizA.txt');
 B=load('vectorB.txt');
 %pwd='Gauss_pivote';
 gauss_pivote_paso(A,B, pwd);
 C = load('paso.txt');
 tamano = size(A)
-%divisor = tamano(1) /(tamano(2) - 1);
 Mat = zeros(tamano(1),tamano(1)+1);
 contador = load('contador.txt')
 for n= 1:(tamano(1))

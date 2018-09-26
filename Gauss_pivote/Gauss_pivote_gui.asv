@@ -23,7 +23,7 @@ function varargout = Gauss_pivote_gui(varargin)
 
 % Edit the above text to modify the response to help Gauss_pivote_gui
 
-% Last Modified by GUIDE v2.5 24-Sep-2018 19:07:36
+% Last Modified by GUIDE v2.5 25-Sep-2018 10:56:49
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -142,13 +142,12 @@ function pushbutton_Paso_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-
 A=load('matrizA.txt');
 B=load('vectorB.txt');
 %pwd='Gauss_pivote';
 gauss_pivote_paso(A,B, pwd);
 C = load('paso.txt');
-tamano = size(A);
+tamano = size(A)
 %divisor = tamano(1) /(tamano(2) - 1);
 Mat = zeros(tamano(1),tamano(1)+1);
 contador = load('contador.txt')
@@ -156,7 +155,7 @@ for n= 1:(tamano(1))
 Mat(n,:) = C(n+tamano(1)*contador,:);
 end
 set(handles.edit_proceso, 'string', num2str(Mat));
-if contador < ()
+if contador < (tamano(2))
 fileID = fopen('contador.txt','w');
 fprintf(fileID,'%d\n',contador + 1);
 fclose(fileID);
@@ -238,9 +237,7 @@ function edit_matrizU_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 % Hints: get(hObject,'String') returns contents of edit_matrizU as text
-%        str2double(get(hObject,'String')) returns contents of edit_matrizU as a double
-
-
+%        str2double(get(hObject,'String')) returns contents of edit_matrizU as a doubl
 % --- Executes during object creation, after setting all properties.
 function edit_matrizU_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to edit_matrizU (see GCBO)
@@ -318,7 +315,7 @@ for n= 1:(tamano(1))
 Mat(n,:) = C(n+tamano(1)*contador(1),:);
 end
 set(handles.edit_proceso, 'string', num2str(Mat));
-if contador > 0
+if contador >= 1
 fileID = fopen('contador.txt','w');
 fprintf(fileID,'%d\n',contador - 1);
 fclose(fileID);

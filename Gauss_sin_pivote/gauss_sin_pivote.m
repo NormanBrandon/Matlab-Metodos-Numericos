@@ -22,7 +22,7 @@ function varargout = gauss_sin_pivote(varargin)
 
 % Edit the above text to modify the response to help gauss_sin_pivote
 
-% Last Modified by GUIDE v2.5 25-Sep-2018 10:47:14
+% Last Modified by GUIDE v2.5 25-Sep-2018 22:26:44
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -75,17 +75,17 @@ varargout{1} = handles.output;
 
 
 function edit1_Callback(hObject, eventdata, handles)
-% hObject    handle to edit1 (see GCBO)
+% hObject    handle to edit_sistema (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit1 as text
-%        str2double(get(hObject,'String')) returns contents of edit1 as a double
+% Hints: get(hObject,'String') returns contents of edit_sistema as text
+%        str2double(get(hObject,'String')) returns contents of edit_sistema as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit1_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit1 (see GCBO)
+function edit_sistema_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to edit_sistema (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -98,17 +98,17 @@ end
 
 
 function edit2_Callback(hObject, eventdata, handles)
-% hObject    handle to edit2 (see GCBO)
+% hObject    handle to solucion (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit2 as text
-%        str2double(get(hObject,'String')) returns contents of edit2 as a double
+% Hints: get(hObject,'String') returns contents of solucion as text
+%        str2double(get(hObject,'String')) returns contents of solucion as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit2_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit2 (see GCBO)
+function solucion_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to solucion (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -142,8 +142,85 @@ end
 
 
 % --- If Enable == 'on', executes on mouse press in 5 pixel border.
-% --- Otherwise, executes on mouse press in 5 pixel border or over edit1.
-function edit1_ButtonDownFcn(hObject, eventdata, handles)
-% hObject    handle to edit1 (see GCBO)
+% --- Otherwise, executes on mouse press in 5 pixel border or over edit_sistema.
+function edit_sistema_ButtonDownFcn(hObject, eventdata, handles)
+% hObject    handle to edit_sistema (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+
+
+% --- Executes on button press in siguiente.
+function siguiente_Callback(hObject, eventdata, handles)
+% hObject    handle to siguiente (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+A=load('matriz.txt');
+C = load('etapas.txt');
+tamano = size(A)
+Mat = zeros(tamano(1),tamano(1)+1);
+contador = load('contador.txt')
+for n= 1:(tamano(1))
+Mat(n,:) = C(n+tamano(1)*contador,:);
+end
+set(handles.solucion, 'string', num2str(Mat));
+if contador < (tamano(2) -1)
+fileID = fopen('contador.txt','w');
+fprintf(fileID,'%d\n',contador + 1);
+fclose(fileID);
+end
+
+% --- Executes on button press in anterior.
+function anterior_Callback(hObject, eventdata, handles)
+% hObject    handle to anterior (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+A=load('matriz.txt');
+C = load('etapas.txt');
+tamano = size(A)
+Mat = zeros(tamano(1),tamano(1)+1);
+contador = load('contador.txt')
+for n= 1:(tamano(1))
+Mat(n,:) = C(n+tamano(1)*contador,:);
+end
+set(handles.solucion, 'string', num2str(Mat));
+if contador > 0
+fileID = fopen('contador.txt','w');
+fprintf(fileID,'%d\n',contador - 1);
+fclose(fileID);
+end
+
+% --- Executes on button press in Empezar.
+function Empezar_Callback(hObject, eventdata, handles)
+% hObject    handle to Empezar (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+eliminacionsimpleetapas;
+A = load('sistema.txt');
+set(handles.edit_sistema, 'string', num2str(A));
+B = load('solucion.txt');
+set(handles.edit3, 'string', num2str(B));
+
+
+
+
+function edit3_Callback(hObject, eventdata, handles)
+% hObject    handle to edit3 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of edit3 as text
+%        str2double(get(hObject,'String')) returns contents of edit3 as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function edit3_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to edit3 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
